@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_sorted.c                                     :+:      :+:    :+:   */
+/*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 14:34:19 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/23 13:20:41 by myaroshu         ###   ########.fr       */
+/*   Created: 2025/12/23 11:28:52 by myaroshu          #+#    #+#             */
+/*   Updated: 2025/12/23 11:29:15 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	stack_sorted(t_stack_node *stack)
+t_stack_node	*find_min(t_stack_node *stack)
 {
+	long			min;
+	t_stack_node	*min_node;
+
 	if (!stack)
-		return (1);
-	while (stack->next)
+		return (NULL);
+	min = LONG_MAX;
+	while (stack)
 	{
-		if (stack->value > stack->next->value)
-			return (false);
+		if (stack->value < min)
+		{
+			min = stack->value;
+			min_node = stack;
+		}
 		stack = stack->next;
 	}
-	return (true);
+	return (min_node);
 }

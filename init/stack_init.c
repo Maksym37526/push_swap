@@ -6,11 +6,20 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 14:21:34 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/21 17:26:32 by myaroshu         ###   ########.fr       */
+/*   Updated: 2025/12/23 13:18:05 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	return (0);
+}
 
 static long	ft_atol(const char *s)
 {

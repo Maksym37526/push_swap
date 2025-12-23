@@ -6,12 +6,12 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 11:44:07 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/21 14:32:35 by myaroshu         ###   ########.fr       */
+/*   Updated: 2025/12/23 13:22:30 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP
-# define FT_PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <limits.h>
 # include <stdbool.h>
@@ -31,5 +31,7 @@ typedef struct s_stack_node
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
 }						t_stack_node;
+
+t_stack_node			*find_min(t_stack_node *stack);
 
 #endif

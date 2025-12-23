@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_sorted.c                                     :+:      :+:    :+:   */
+/*   prep.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 14:34:19 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/23 13:20:41 by myaroshu         ###   ########.fr       */
+/*   Created: 2025/12/23 11:43:18 by myaroshu          #+#    #+#             */
+/*   Updated: 2025/12/23 13:21:06 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	stack_sorted(t_stack_node *stack)
+void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
+		char stack_name)
 {
-	if (!stack)
-		return (1);
-	while (stack->next)
+	while (*stack != top_node)
 	{
-		if (stack->value > stack->next->value)
-			return (false);
-		stack = stack->next;
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack, false);
+			else
+				rra(stack, false);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack, false);
+			else
+				rrb(stack, false);
+		}
 	}
-	return (true);
 }

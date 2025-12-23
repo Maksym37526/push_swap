@@ -5,33 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/21 17:27:36 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/21 17:43:29 by myaroshu         ###   ########.fr       */
+/*   Created: 2025/12/23 11:30:44 by myaroshu          #+#    #+#             */
+/*   Updated: 2025/12/23 13:19:40 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	current_index(t_stack_node *stack)
-{
-	int	i;
-	int	median;
-
-	i = 0;
-	if (!stack)
-		return ;
-	median = stack_len(stack) / 2;
-	while (stack)
-	{
-		stack->index = i;
-		if (i <= median)
-			stack->above_median = true;
-		else
-			stack->above_median = false;
-		stack = stack->next;
-		i++;
-	}
-}
 
 void	sort_stacks(t_stack_node **a, t_stack_node **b)
 {
@@ -50,9 +29,31 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 	sort_three(a);
 	while (*b)
 	{
-		init_node_b(*a, *b);
+		init_nodes_b(*a, *b);
 		move_b_to_a(a, b);
 	}
 	current_index(*a);
 	min_on_top(a);
+}
+
+static void	rotate_both(t_stack_node **a, t_stack_node **b,
+		t_stack_node *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+	{
+		rr(a, b, false);
+	}
+	current_index(*a);
+	current_index(*b);
+}
+
+static void	rev_roate_both(t_stack_node **a, t_stack_node **b,
+		t_stack_node *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && a != cheapest_node)
+	{
+		rrr(a, b, false);
+	}
+	current_index(*a);
+	curent_index(*b);
 }
