@@ -33,7 +33,7 @@ void	current_index(t_stack_node *stack)
 	}
 }
 
-static void	set_target_a(t_stack_node *a, t_stack_node *b)
+void	set_target_a(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_b;
 	t_stack_node	*target_node;
@@ -61,7 +61,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-static void	set_target_b(t_stack_node *a, t_stack_node *b)
+void	set_target_b(t_stack_node *a, t_stack_node *b)
 {
 	t_stack_node	*current_a;
 	t_stack_node	*target_node;
@@ -89,7 +89,7 @@ static void	set_target_b(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
+void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 {
 	int	len_a;
 	int	len_b;

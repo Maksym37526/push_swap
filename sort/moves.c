@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	move_a_to_b(t_stack_node **a, t_stack_node **b)
+void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_node;
 
@@ -29,13 +29,13 @@ static void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 	pb(b, a, false);
 }
 
-static void	move_b_to_a(t_stack_node **a, t_stack_node **b)
+void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
 	pa(b, a, false);
 }
 
-static void	min_on_top(t_stack_node **a)
+void	min_on_top(t_stack_node **a)
 {
 	while ((*a)->value != find_min(*a)->value)
 	{

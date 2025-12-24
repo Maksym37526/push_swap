@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+void	sort_three(t_stack_node **a)
+{
+	t_stack_node	*biggest_node;
+
+	biggest_node = find_max(*a);
+	if (biggest_node == *a)
+		ra(a, false);
+	else if ((*a)->next == biggest_node)
+		rra(a, false);
+	if ((*a)->value > (*a)->next->value)
+		sa(a, false);
+}
+
 void	sort_stacks(t_stack_node **a, t_stack_node **b)
 {
 	int	len_a;
@@ -36,7 +49,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 	min_on_top(a);
 }
 
-static void	rotate_both(t_stack_node **a, t_stack_node **b,
+void	rotate_both(t_stack_node **a, t_stack_node **b,
 		t_stack_node *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && *a != cheapest_node)
@@ -47,7 +60,7 @@ static void	rotate_both(t_stack_node **a, t_stack_node **b,
 	current_index(*b);
 }
 
-static void	rev_roate_both(t_stack_node **a, t_stack_node **b,
+void	rev_rotate_both(t_stack_node **a, t_stack_node **b,
 		t_stack_node *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && a != cheapest_node)
@@ -55,5 +68,5 @@ static void	rev_roate_both(t_stack_node **a, t_stack_node **b,
 		rrr(a, b, false);
 	}
 	current_index(*a);
-	curent_index(*b);
+	current_index(*b);
 }

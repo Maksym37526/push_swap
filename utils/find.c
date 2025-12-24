@@ -31,3 +31,34 @@ t_stack_node	*find_min(t_stack_node *stack)
 	}
 	return (min_node);
 }
+
+t_stack_node	*find_max(t_stack_node *stack)
+{
+	long			max;
+	t_stack_node	*max_node;
+
+	if (!stack)
+		return (NULL);
+	max = LONG_MIN;
+	while (stack)
+	{
+		if (stack->value > max)
+		{
+			max = stack->value;
+			max_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (max_node);
+}
+
+t_stack_node	*find_last(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack->next)
+	{
+		stack = stack->next;
+	}
+	return (stack);
+}
