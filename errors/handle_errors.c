@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/29 13:45:41 by myaroshu          #+#    #+#             */
+/*   Updated: 2025/12/29 13:59:13 by myaroshu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	error_syntax(char *str)
@@ -11,8 +23,7 @@ int	error_syntax(char *str)
 	{
 		if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
 			return (1);
-				//якщо наступний символ після "+/-" не >= '0' aбо <= '9',
-				ПОМИЛКА
+		//якщо наступний символ після "+/-" не >= '0' aбо <= '9', ПОМИЛКА
 	}
 	while (str[++i])
 	{
@@ -55,8 +66,8 @@ void	free_stack(t_stack_node **stack)
 
 int	free_errors(t_stack_node **a_stack)
 {
-    free_stack(a_stack);
-    printf("Error\n");
-    //write(2, "Error\n", 6)
-    exit(1);
+	free_stack(a_stack);
+	printf("Error\n");
+	// write(2, "Error\n", 6)
+	exit(1);
 }
