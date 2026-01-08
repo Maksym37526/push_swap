@@ -21,14 +21,14 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-static long	ft_atol(const char *s)
+long	ft_atol(const char *s)
 {
 	long	result;
 	long	sign;
 
 	result = 0;
 	sign = 1;
-	while (*s >= 9 && *s <= 13 || (*s == 32))
+	while ((*s >= 9 && *s <= 13) || (*s == 32))
 	{
 		s++;
 	}
@@ -45,7 +45,7 @@ static long	ft_atol(const char *s)
 	return (result * sign);
 }
 
-static void	append_node(t_stack_node **stack, int n)
+void	append_node(t_stack_node **stack, int n)
 {
 	t_stack_node	*node;
 	t_stack_node	*last_node;
@@ -57,6 +57,9 @@ static void	append_node(t_stack_node **stack, int n)
 		return ;
 	node->next = NULL;
 	node->value = n;
+	node->cheapest = false;
+	node->push_cost = 0;
+	node->target_node = NULL;
 	if (!(*stack))
 	{
 		*stack = node;

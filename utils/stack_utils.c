@@ -16,6 +16,7 @@ int	stack_len(t_stack_node *stack)
 {
 	int	count;
 
+	count = 0;
 	if (!stack)
 		return (0);
 	count = 0;
@@ -40,15 +41,15 @@ t_stack_node	*get_cheapest(t_stack_node *stack)
 	return (NULL);
 }
 
-bool	stack_sorted(t_stack_node *stack)
+bool    stack_sorted(t_stack_node *stack)
 {
-	if (!stack)
-		return (1);
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
+    if (!stack)
+        return (1);
+    while (stack->next)
+    {
+        if (stack->value > stack->next->value)
+            return (false);
+        stack = stack->next;
+    }
+    return (true);
 }

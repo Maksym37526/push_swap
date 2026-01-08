@@ -35,57 +35,66 @@ int	ft_wordcount(const char *s, char c)
 	return (count_words);
 }
 
-static char	*get_next_word(char *s, char c)
+char *get_next_word(char const *s, char c, int *cursor)
 {
-	static int	cursor = 0;
-	char		*next_word;
-	int			len;
-	int			i;
+    char    *next_word;
+    int     len;
+    int     i;
 
-	len = 0;
-	i = 0;
-	while (s[cursor] == c)
-	{
-		++cursor;
-	}
-	while (s[cursor + len] != c && s[cursor + len])
-		len++;
-	next_word = malloc((size_t)len * sizeof(char) + 1);
-	if (!next_word)
-		return (NULL);
-	while (s[cursor] != c && s[cursor])
-	{
-		next_word[i++] = s[cursor++];
-	}
-	next_word[i] = '\0';
-	return (next_word);
+    len = 0;
+    i = 0;
+    while (s[*cursor] == c)
+        (*cursor)++;
+    while (s[*cursor + len] != c && s[*cursor + len])
+        len++;
+    next_word = malloc((size_t)len * sizeof(char) + 1);
+    if (!next_word)
+        return (NULL);
+    while (i < len)
+    {
+        next_word[i++] = s[(*cursor)++];
+    }
+    next_word[i] = '\0';
+    return (next_word);
 }
 
-char	**ft_split(char *s, char c)
+char    **ft_split(char const *s, char c)
 {
-	int		count;
-	char	**split;
-	int		result;
+    char    **res;
+    int     words;
+    int     i;
+    int     cursor;
 
-	result = 0;
-	count = ft_wordcount(s, c);
-	if (!count)
-		return (NULL);
-	split = malloc(sizeof(char *) * (size_t)(count) + 2);
-	if (!split)
-		return (NULL);
-	while (count-- >= 0)
-	{
-		if (result == 0)
-		{
-			split[result] = malloc(sizeof(char));
-			if (!split[result])
-				return (NULL);
-			split[result++][0] = '\0';
-			continue ;
-		}
-		split[result++] = get_next_word(s, c);
-	}
-	split[result] = NULL;
-	return (split);
+    if (!s)
+        return (NULL);
+    words = ft_wordcount(s, c);
+    res = malloc(sizeof(char *) * (words + 1)); // +1 для NULL в кінці
+    if (!res)
+        return (NULL);
+    i = 0;
+    cursor = 0; 
+    while (i < words)
+    {
+        res[i] = get_next_word(s, c, &cursor); // Передаємо адресу курсора
+        if (!res[i])
+        {
+            free_matrix(res);
+            return (NULL);
+        }
+        i++;
+    }
+    res[i] = NULL; 
+    return (res);
+}
+
+void    free_matrix(char **argv)
+{
+    int i;
+
+    i = -1;
+    if (NULL == argv)
+        return ;
+    while (argv[++i])
+        free(argv[i]);
+    free(argv);
 }

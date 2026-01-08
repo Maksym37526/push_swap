@@ -1,40 +1,26 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -I.
 
-SRC_DIR = src
 OBJ_DIR = obj
 
-COMMANDS_DIR = $(SRC_DIR)/commands
-COMMANDS_SRC = push.c swap.c rotations.c rev_rotate.c
+COMMANDS_SRC = commands/push.c commands/swap.c commands/rotations.c commands/rev_rotate.c
+INIT_SRC = init/stack_init.c init/split.c init/nodes.c init/init_a_to_b.c
+SORT_SRC = sort/sort_stacks.c sort/moves.c 
+UTILS_SRC = utils/stack_utils.c utils/find.c utils/prep.c
+ERRORS_SRC = errors/handle_errors.c
+MAIN_SRC = main.c
 
-INIT_DIR = $(SRC_DIR)/init
-INIT_SRC = stack_init.c split.c nodes.c init_a_to_b.c
+SRCS = $(MAIN_SRC) $(COMMANDS_SRC) $(INIT_SRC) $(SORT_SRC) $(UTILS_SRC) $(ERRORS_SRC)
 
-SORT_DIR = $(SRC_DIR)/sort
-SORT_SRC = sort_stacks.c  moves.c 
-
-UTILS_DIR = $(SRC_DIR)/utils
-UTILS_SRC = stack_utils.c find.c prep.c
-
-ERRORS_DIR = $(SRC_DIR)/errors
-ERRORS_SRC = handle_errors.c
-
-SRCS = $(SRC_DIR)/main.c \
-	$(addprefix $(COMMANDS_DIR)/, $(COMMANDS_SRC)) \
-	$(addprefix $(INIT_DIR)/, $(INIT_SRC)) \
-	$(addprefix $(SORT_DIR)/, $(SORT_SRC)) \
-	$(addprefix $(UTILS_DIR)/, $(UTILS_SRC)) \
-	$(addprefix $(ERRORS_DIR)/, $(ERRORS_SRC))
-
-OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

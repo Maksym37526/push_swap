@@ -12,19 +12,22 @@
 
 #include "push_swap.h"
 
-static void	swap(t_stack_node **head)
+void	swap(t_stack_node **head)
 {
-	if (!*head || !(*head)->next)
-		return ;
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-	{
-		(*head)->next->prev = (*head)->prev;
-	}
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
+	t_stack_node    *first;
+    t_stack_node    *second;
+
+    if (!*head || !(*head)->next)
+        return ;
+    first = *head;
+    second = first->next;
+    first->next = second->next;
+    if (second->next)
+        second->next->prev = first;
+    second->prev = NULL;
+    second->next = first;
+    first->prev = second;
+    *head = second;
 }
 
 void	sa(t_stack_node **a, bool print)
@@ -37,7 +40,7 @@ void	sa(t_stack_node **a, bool print)
 void	sb(t_stack_node **b, bool print)
 {
 	swap(b);
-	if (!print)
+	if (print)
 		printf("sb\n");
 }
 
@@ -45,7 +48,7 @@ void	ss(t_stack_node **a, t_stack_node **b, bool print)
 {
 	swap(a);
 	swap(b);
-	if (!print)
+	if (print)
 	{
 		printf("\n");
 	}

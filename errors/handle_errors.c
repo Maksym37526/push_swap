@@ -17,7 +17,7 @@ int	error_syntax(char *str)
 	int	i;
 
 	i = 0;
-	if (!(str[i] == '+' || str[i] == '-') || (str[i] >= '0' && str[i] <= '9'))
+	if (!((str[i] == '+' || str[i] == '-') || (str[i] >= '0' && str[i] <= '9')))
 		return (1);
 	if (str[i] == '+' || str[i] == '-')
 	{
@@ -25,10 +25,12 @@ int	error_syntax(char *str)
 			return (1);
 		//якщо наступний символ після "+/-" не >= '0' aбо <= '9', ПОМИЛКА
 	}
-	while (str[++i])
+	i++;
+	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (true);
+			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -36,7 +38,7 @@ int	error_syntax(char *str)
 int	error_duplicate(t_stack_node *a, long n)
 {
 	if (!a)
-		return (NULL);
+		return (0);
 	while (a)
 	{
 		if (a->value == n)
@@ -52,7 +54,7 @@ void	free_stack(t_stack_node **stack)
 	t_stack_node	*current;
 
 	if (!stack)
-		return (NULL);
+		return;
 	current = *stack;
 	while (current)
 	{
