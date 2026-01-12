@@ -6,7 +6,7 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 11:28:52 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/23 11:29:15 by myaroshu         ###   ########.fr       */
+/*   Updated: 2026/01/11 18:31:40 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_stack_node	*find_min(t_stack_node *stack)
 
 	if (!stack)
 		return (NULL);
-	min = stack->value;
-	min_node = stack;
+	min = LONG_MAX;
+	min_node = NULL;
 	while (stack)
 	{
 		if (stack->value < min)
@@ -33,25 +33,25 @@ t_stack_node	*find_min(t_stack_node *stack)
 	return (min_node);
 }
 
-t_stack_node    *find_max(t_stack_node *stack)
+t_stack_node	*find_max(t_stack_node *stack)
 {
-    long            max;
-    t_stack_node    *max_node;
+	long			max;
+	t_stack_node	*max_node;
 
-    if (!stack)
-        return (NULL);
-    max = stack->value;
-    max_node = stack;
-    while (stack)
-    {
-        if (stack->value > max)
-        {
-            max = stack->value;
-            max_node = stack;
-        }
-        stack = stack->next;
-    }
-    return (max_node);
+	if (!stack)
+		return (NULL);
+	max = LONG_MIN;
+	max_node = NULL;
+	while (stack)
+	{
+		if (stack->value > max)
+		{
+			max = stack->value;
+			max_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (max_node);
 }
 
 t_stack_node	*find_last(t_stack_node *stack)

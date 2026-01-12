@@ -6,7 +6,7 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 13:45:20 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/29 13:45:21 by myaroshu         ###   ########.fr       */
+/*   Updated: 2026/01/11 16:50:24 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ t_stack_node	*get_cheapest(t_stack_node *stack)
 	return (NULL);
 }
 
-bool    stack_sorted(t_stack_node *stack)
+bool	stack_sorted(t_stack_node *stack)
 {
-    if (!stack)
-        return (1);
-    while (stack->next)
-    {
-        if (stack->value > stack->next->value)
-            return (false);
-        stack = stack->next;
-    }
-    return (true);
+	if (!stack)
+		return (1);
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
 }

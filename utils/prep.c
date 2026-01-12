@@ -6,7 +6,7 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 11:43:18 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/23 13:21:06 by myaroshu         ###   ########.fr       */
+/*   Updated: 2026/01/11 19:48:29 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
 			else
 				rrb(stack, true);
 		}
+		current_index(*stack);
 	}
 }

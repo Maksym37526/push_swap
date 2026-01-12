@@ -6,7 +6,7 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 13:45:41 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/29 13:59:13 by myaroshu         ###   ########.fr       */
+/*   Updated: 2026/01/11 16:44:01 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	error_syntax(char *str)
 	{
 		if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
 			return (1);
-		//якщо наступний символ після "+/-" не >= '0' aбо <= '9', ПОМИЛКА
 	}
 	i++;
 	while (str[i])
@@ -34,6 +33,7 @@ int	error_syntax(char *str)
 	}
 	return (0);
 }
+/*якщо наступний символ після "+/-" не >= '0' aбо <= '9', ПОМИЛКА* (line 25)*/
 
 int	error_duplicate(t_stack_node *a, long n)
 {
@@ -54,7 +54,7 @@ void	free_stack(t_stack_node **stack)
 	t_stack_node	*current;
 
 	if (!stack)
-		return;
+		return ;
 	current = *stack;
 	while (current)
 	{
@@ -69,7 +69,6 @@ void	free_stack(t_stack_node **stack)
 int	free_errors(t_stack_node **a_stack)
 {
 	free_stack(a_stack);
-	printf("Error\n");
-	// write(2, "Error\n", 6)
+	write(2, "Error\n", 6);
 	exit(1);
 }

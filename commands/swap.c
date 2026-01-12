@@ -6,7 +6,7 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 10:40:17 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/23 11:04:16 by myaroshu         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:10:58 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 void	swap(t_stack_node **head)
 {
-	t_stack_node    *first;
-    t_stack_node    *second;
+	t_stack_node	*first;
+	t_stack_node	*second;
 
-    if (!*head || !(*head)->next)
-        return ;
-    first = *head;
-    second = first->next;
-    first->next = second->next;
-    if (second->next)
-        second->next->prev = first;
-    second->prev = NULL;
-    second->next = first;
-    first->prev = second;
-    *head = second;
+	if (!*head || !(*head)->next)
+		return ;
+	first = *head;
+	second = first->next;
+	first->next = second->next;
+	if (second->next)
+		second->next->prev = first;
+	second->prev = NULL;
+	second->next = first;
+	first->prev = second;
+	*head = second;
 }
 
 void	sa(t_stack_node **a, bool print)
 {
 	swap(a);
 	if (print)
-		printf("sa\n");
+		write(1, "sa\n", 3);
 }
 
 void	sb(t_stack_node **b, bool print)
 {
 	swap(b);
 	if (print)
-		printf("sb\n");
+		write(1, "sb\n", 3);
 }
 
 void	ss(t_stack_node **a, t_stack_node **b, bool print)
@@ -50,6 +50,6 @@ void	ss(t_stack_node **a, t_stack_node **b, bool print)
 	swap(b);
 	if (print)
 	{
-		printf("\n");
+		write(1, "ss\n", 3);
 	}
 }

@@ -6,47 +6,46 @@
 /*   By: myaroshu <myaroshu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 10:50:45 by myaroshu          #+#    #+#             */
-/*   Updated: 2025/12/23 13:16:57 by myaroshu         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:44:29 by myaroshu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    push(t_stack_node **dest, t_stack_node **src)
+void	push(t_stack_node **dest, t_stack_node **src)
 {
-    t_stack_node    *push_node;
+	t_stack_node	*push_node;
 
-    if (!src || !*src)
-        return ;
-    
-    push_node = *src;
-    *src = (*src)->next;
-    if (*src)
-        (*src)->prev = NULL;
-    push_node->prev = NULL;
-    if (!*dest)
-    {
-        *dest = push_node;
-        push_node->next = NULL;
-    }
-    else
-    {
-        push_node->next = *dest;
-        push_node->next->prev = push_node;
-        *dest = push_node;
-    }
+	if (!src || !*src)
+		return ;
+	push_node = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	push_node->prev = NULL;
+	if (!*dest)
+	{
+		*dest = push_node;
+		push_node->next = NULL;
+	}
+	else
+	{
+		push_node->next = *dest;
+		(*dest)->prev = push_node;
+		*dest = push_node;
+	}
 }
 
-void    pa(t_stack_node **a, t_stack_node **b, bool print)
+void	pa(t_stack_node **a, t_stack_node **b, bool print)
 {
-    push(a, b);
-    if (print)
-        write(1, "pa\n", 3);
+	push(a, b);
+	if (print)
+		write(1, "pa\n", 3);
 }
 
-void    pb(t_stack_node **a, t_stack_node **b, bool print)
+void	pb(t_stack_node **a, t_stack_node **b, bool print)
 {
-    push(b, a);
-    if (print)
-        write(1, "pb\n", 3);
+	push(b, a);
+	if (print)
+		write(1, "pb\n", 3);
 }
